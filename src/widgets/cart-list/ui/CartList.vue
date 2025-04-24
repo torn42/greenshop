@@ -12,8 +12,6 @@ const items = computed(() =>
     )
   )
 );
-
-cartStore.cart;
 </script>
 
 <template>
