@@ -1,0 +1,6 @@
+@import 'tailwindcss';
+@import '../shared/ui/fonts/CeraPro/stylesheet.css';
+
+body {
+  font-family: 'Cera Pro', Arial, Helvetica, sans-serif;
+}
