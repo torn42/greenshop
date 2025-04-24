@@ -7,7 +7,9 @@ const cartStore = useCartStore();
 
 const items = computed(() =>
   products.filter((item) =>
-    cartStore.cart.some((cartItem) => cartItem.id === item.id)
+    cartStore.cart.some(
+      (cartItem: { id: number; quantity: number }) => cartItem.id === item.id
+    )
   )
 );
 
