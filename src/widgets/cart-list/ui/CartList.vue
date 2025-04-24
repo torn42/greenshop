@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { CartListItem, useCartStore } from '@features/cart';
 import { products } from '@shared/consts';
+import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 
 const cartStore = useCartStore();
 
+const { cart } = storeToRefs(cartStore);
+
 const items = computed(() =>
   products.filter((item) =>
-    cartStore.cart.some(
+    cart.value.some(
       (cartItem: { id: number; quantity: number }) => cartItem.id === item.id
     )
   )

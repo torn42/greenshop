@@ -6,8 +6,11 @@ import IconCart from '@shared/assets/IconCart.vue';
 import IconLogin from '../assets/IconLogin.vue';
 import { navbarItems } from '../consts/navbarItems';
 import { useCartStore } from '@features/cart/model/cart';
+import { storeToRefs } from 'pinia';
 
 const cartStore = useCartStore();
+
+const { cart } = storeToRefs(cartStore);
 </script>
 
 <template>
@@ -32,7 +35,7 @@ const cartStore = useCartStore();
                 <div
                   class="absolute top-0 -right-1 font-medium text-white bg-[#46A358] text-[10px] size-3.5 flex items-center justify-center shrink-0 rounded-full border-2 border-white"
                 >
-                  {{ cartStore.cart.length }}
+                  {{ cart.length }}
                 </div>
               </div>
             </RouterLink>

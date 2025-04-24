@@ -4,22 +4,27 @@ import { products } from '@shared/consts';
 import { useCartStore } from '../model/cart';
 import { BaseButton, BaseModal } from '@shared/ui';
 import { RouterLink } from 'vue-router';
+import { type Product } from '@entities/product';
+import { storeToRefs } from 'pinia';
 
 const isModalOpen = ref(false);
 
 const cartStore = useCartStore();
+const { cart } = storeToRefs(cartStore);
 
 const { clearCart } = cartStore;
 
 const items = computed(() =>
   products.filter((item) =>
-    cartStore.cart.some((cartItem) => cartItem.id === item.id)
+    cart.value.some(
+      (cartItem: { id: number; quantity: number }) => cartItem.id === item.id
+    )
   )
 );
 
 const subtotal = computed(() => {
   return items.value.reduce((total, cartItem) => {
-    const product = products.find((p) => p.id === cartItem.id);
+    const product = products.find((p: Product) => p.id === cartItem.id);
     if (!product) return total;
     return total + product.price;
   }, 0);

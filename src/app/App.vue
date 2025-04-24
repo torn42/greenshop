@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TheHeader } from '@/widgets/header';
+import { TheHeader } from '@widgets/header';
 import { BaseLayout } from '@shared/ui';
 </script>
 

@@ -2,14 +2,18 @@
 import { IconCart } from '@shared/assets';
 import { useCartStore } from '../model/cart';
 import { computed } from 'vue';
+import { storeToRefs } from 'pinia';
 
 const { productId } = defineProps<{
   productId: number;
 }>();
 const cartStore = useCartStore();
+const { cart } = storeToRefs(cartStore);
 const { addToCart, removeFromCart } = cartStore;
 const isInCart = computed(() =>
-  cartStore.cart.some((item) => item.id === productId)
+  cart.value.some(
+    (item: { id: number; quantity: number }) => item.id === productId
+  )
 );
 
 const handleClick = () => {
@@ -20,6 +24,6 @@ const handleClick = () => {
 
 <template>
   <button @click="handleClick" class="cursor-pointer">
-    <IconCart :fill="isInCart ? '#46A358' : '#4a4a4a'" />
-  </button>
+    <IconCart :fill="isInCart ? '#46A358' : '#4a4a4a'" /></button
+  >``
 </template>
